@@ -1,3 +1,4 @@
+require "#{File.dirname(__FILE__)}/flickr.rb"
 class FlickrSidebar < Sidebar
   description 'Pictures from <a href="http://www.flickr.com">flickr.com</a>'
   setting :feed_url, nil
@@ -7,7 +8,7 @@ class FlickrSidebar < Sidebar
   lifetime 1.hour
 
   def flickr
-    @flickr ||= FlickrAggregation.new(feed_url)
+    @flickr ||= ::FlickrAggregation.new(feed_url)
   rescue Exception => e
     logger.info e
     nil
